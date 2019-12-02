@@ -1,6 +1,6 @@
 
 <div id="search-component">
-    <h4><label for="search-box">Hero Search</label></h4>
+    <h4><label for="search-box">Student Search</label></h4>
   
     <input #searchBox id="search-box"
      (input)="search(searchBox.value)" />
@@ -12,4 +12,9 @@
         </a>
       </li>
     </ul>
+    <div>
+      <button (click)="add(hero)">Add</button>
+      <button>Edit</button> 
+      <button  (click)="delete(hero)">Delete</button>
+    </div>
   </div>
