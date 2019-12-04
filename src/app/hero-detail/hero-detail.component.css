@@ -1,6 +1,6 @@
 /* HeroDetailComponent에 적용되는 CSS 스타일 */
 label {
-    display: inline-block;
+    display: block;
     width: 3em;
     margin: .5em 0;
     color: #607D8B;

@@ -23,7 +23,7 @@ export class HeroService {
 
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
-    return this.http.get<any>(url).pipe(
+    return this.http.get<Hero>(url).pipe(
       tap(_ => this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<any>(`getHero id=${id}`))
     );
@@ -34,15 +34,18 @@ export class HeroService {
       catchError(this.handleError<any>('getHeroes',[]))
     );
     
-  } 
-  updateHero (hero: Hero): Observable<any> {
-    return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
+  }
+  
+  updateHero ( hero: Hero): Observable<any> {
+    const url = `${this.heroesUrl}/${hero.id}`;
+    return this.http.put<Hero>(url, hero, httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${hero.id}`)),
       catchError(this.handleError<any>('updateHero'))
     );
   }
-  addHero (hero: Hero): Observable<any> {
-    return this.http.post<any>(this.heroesUrl, hero, httpOptions).pipe(
+
+  addHero (hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
       tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
       catchError(this.handleError<any>('addHero'))
     );
@@ -80,7 +83,7 @@ searchHeroes(term: string): Observable<Hero[]> {
       console.error(error);
       this.log(`${operation} failed: ${error.message}`);
       return of(result as T);
-    };
+    };  
   }
   
 

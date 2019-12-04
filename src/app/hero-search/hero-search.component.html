@@ -13,7 +13,8 @@
       </li>
     </ul>
     <div>
-      <button (click)="add(hero)">Add</button>
+      <button (click)="add(heroName.value); heroName.value=''">
+        Add</button>
       <button>Edit</button> 
       <button  (click)="delete(hero)">Delete</button>
     </div>
